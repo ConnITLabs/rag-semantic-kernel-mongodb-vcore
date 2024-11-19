@@ -108,7 +108,7 @@ async def initialize_sk_memory_store(
             vector_dimensions=vector_dimensions,
             num_lists=num_lists,
             similarity=similarity,
-            kind=kind, 
+            kind="ivf", 
             application_name="",
             m = 16, 
             ef_construction = 64,
