@@ -100,19 +100,16 @@ async def initialize_sk_memory_store(
     try:
         logging.info("Creating or updating Azure Cosmos DB Memory Store...")
         store = await AzureCosmosDBMemoryStore.create(
-            cosmos_connstr=os.environ.get("AZCOSMOS_CONNSTR") or "connection-string",
+            cosmos_connstr=os.environ.get("AZCOSMOS_CONNSTR"),
             cosmos_api="mongo-vcore",
-            database_name=os.environ.get("AZCOSMOS_DATABASE_NAME") or "sk_database",
-            collection_name=collection_name,
-            index_name=index_name,
-            vector_dimensions=vector_dimensions,
-            num_lists=num_lists,
-            similarity=similarity,
-            kind="ivf", 
-            application_name="",
-            m = 16, 
-            ef_construction = 64,
-            ef_search = 40
+            database_name=os.environ.get("AZCOSMOS_DATABASE_NAME"),
+            collection_name=os.environ.get("AZCOSMOS_CONTAINER_NAME"),
+            index_name="vectorSearchIndex",
+            vector_dimensions=1536,
+            num_lists=1,
+            similarity=CosmosDBSimilarityType.COS,
+            kind=CosmosDBVectorSearchType.VECTOR_IVF, 
+            application_name="MyRAGChatBot",
         )
         logging.info("Finished updating Azure Cosmos DB Memory Store...")
 
