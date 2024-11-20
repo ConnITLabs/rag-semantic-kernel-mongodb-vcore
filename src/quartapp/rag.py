@@ -107,8 +107,8 @@ async def initialize_sk_memory_store(
             index_name="vectorSearchIndex",
             vector_dimensions=1536,
             num_lists=1,
-            similarity=CosmosDBSimilarityType.COS,
-            kind=CosmosDBVectorSearchType.VECTOR_IVF, 
+            similarity="COS",
+            kind="vector-ivf", 
             application_name="MyRAGChatBot",
         )
         logging.info("Finished updating Azure Cosmos DB Memory Store...")
